@@ -16,7 +16,18 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
+from .views import (
+    PlayerStatsCreateView,
+    PlayerStatsByPlayer,
+    PlayerStatsByMatch,
+    UpdateHeatmapView,
+    StatsLogsView
+)
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
+    path("stats/create/", PlayerStatsCreateView.as_view(), name="stats-create"),
+    path("stats/player/<int:player_id>/", PlayerStatsByPlayer.as_view(), name="stats-player"),
+    path("stats/match/<int:match_id>/", PlayerStatsByMatch.as_view(), name="stats-match"),
+    path("stats/<int:stat_id>/heatmap/", UpdateHeatmapView.as_view(), name="stats-heatmap"),
+    path("stats/<int:stat_id>/logs/", StatsLogsView.as_view(), name="stats-logs"),
 ]
