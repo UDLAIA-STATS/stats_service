@@ -15,19 +15,9 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.contrib import admin
-from django.urls import path
-from .views import (
-    PlayerStatsCreateView,
-    PlayerStatsByPlayer,
-    PlayerStatsByMatch,
-    UpdateHeatmapView,
-    StatsLogsView
-)
+from django.urls import include, path
+
 
 urlpatterns = [
-    path("stats/create/", PlayerStatsCreateView.as_view(), name="stats-create"),
-    path("stats/player/<int:player_id>/", PlayerStatsByPlayer.as_view(), name="stats-player"),
-    path("stats/match/<int:match_id>/", PlayerStatsByMatch.as_view(), name="stats-match"),
-    path("stats/<int:stat_id>/heatmap/", UpdateHeatmapView.as_view(), name="stats-heatmap"),
-    path("stats/<int:stat_id>/logs/", StatsLogsView.as_view(), name="stats-logs"),
+    path("api/", include("stats.urls")),
 ]
