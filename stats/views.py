@@ -18,9 +18,6 @@ from stats.utils import (
 )
 from stats.utils.paginate import paginate_queryset
 
-# -----------------------------------------------------------
-# Helpers
-# -----------------------------------------------------------
 def upsert_player_consolidated(player_id: int, match_id: int, defaults: dict):
     """Crea o actualiza el registro consolidado de un jugador."""
     return PlayerStatsConsolidated.objects.update_or_create(
@@ -177,9 +174,6 @@ class PlayerStatsPartialUpdateView(generics.UpdateAPIView):
             return error_response("Error inesperado", str(exc), status.HTTP_500_INTERNAL_SERVER_ERROR)
 
 
-# -----------------------------------------------------------
-# 3.  List (filter by match)
-# -----------------------------------------------------------
 class PlayerStatsListView(generics.ListAPIView):
     """
     GET /api/players/stats/?match_id=<id>&page=<n>&offset=<m>
@@ -203,9 +197,8 @@ class PlayerStatsListView(generics.ListAPIView):
             )
         except Exception as exc:
             return error_response("Error al listar", str(exc), status.HTTP_500_INTERNAL_SERVER_ERROR)
-# -----------------------------------------------------------
-# 4.  Retrieve single
-# -----------------------------------------------------------
+
+
 class PlayerStatsDetailView(generics.RetrieveAPIView):
     """
     GET /api/players/stats/<pk>/
