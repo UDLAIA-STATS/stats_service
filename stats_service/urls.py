@@ -17,10 +17,8 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import include, path
 
-from stats.views import TeamStatsPdfView
 
 
 urlpatterns = [
     path("api/", include("stats.urls")),
-    path("matches/<int:match_id>/stats/pdf/", TeamStatsPdfView.as_view(), name="team-stats-pdf"),
 ]
