@@ -13,7 +13,9 @@ https://docs.djangoproject.com/en/5.2/ref/settings/
 from ctypes import cast
 from pathlib import Path
 from decouple import config
+from django.core.management.commands.runserver import Command as rs
 
+rs.default_port = 8090
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
@@ -39,7 +41,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
-    'stats_app',
+    'stats',
     'rest_framework',
 ]
 
